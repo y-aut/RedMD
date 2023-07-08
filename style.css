@@ -1,3 +1,12 @@
+* {
+	line-height: 32px;
+}
+
+p,
+li {
+	font-size: 18px;
+}
+
 .red {
 	background: whitesmoke;
 	color: whitesmoke;
