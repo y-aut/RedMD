@@ -2,9 +2,24 @@
 	line-height: 32px;
 }
 
+body {
+	margin: 30px;
+}
+
 p,
 li {
 	font-size: 18px;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+label {
+	display: block;
 }
 
 .red {
@@ -14,4 +29,29 @@ li {
 
 .red[shown="true"] {
 	color: coral;
+}
+
+.changeAll {
+	background: none;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	border: none;
+	color: mediumseagreen;
+	cursor: pointer;
+	transition: 0.3s all;
+}
+
+.changeAll:before {
+	display: inline-block;
+	content: "+";
+	font-size: 30px;
+	position: relative;
+	transform: translateY(4px);
+}
+
+.changeAll[mode="false"] {
+	color: orangered;
+	transform: rotate(45deg) translate(6.2px, -6.2px);
 }
