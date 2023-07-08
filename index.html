@@ -11,22 +11,33 @@
 
 <body>
     <h1>RedMD</h1>
-    <form id="fmLoad" method="get" enctype="application/x-www-form-urlencoded" action="show.html">
-        <label for="mdfile">MarkDown ファイルを選択</label>
-        <input type="file" id="mdfile" accept=".html" required>
-        <input type="hidden" id="content" name="content">
-    </form>
+    <label for="mdfile">MarkDown ファイルを選択</label>
+    <input type="file" id="mdfile" accept=".html" required>
 </body>
 
 <script>
     $(function () {
+        function show(content) {
+            $("body").html(content);
+            $("code").replaceWith(function () {
+                const text = $(this).text();
+                $(this).replaceWith('<span class="red">' + text + '</span>');
+            });
+            $(".red").click(function () {
+                if ($(this).attr("shown") == "true") {
+                    $(this).attr("shown", "false");
+                } else {
+                    $(this).attr("shown", "true");
+                }
+            });
+        }
+
         $("#mdfile").change(function () {
             if (!this.files) return;
             const [file] = this.files;
             const reader = new FileReader();
             reader.addEventListener("load", () => {
-                $("#content").val(reader.result);
-                $("#fmLoad").submit();
+                show(reader.result);
             }, false);
             reader.readAsText(file);
         });
