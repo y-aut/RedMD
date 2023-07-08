@@ -2,10 +2,6 @@
 	line-height: 32px;
 }
 
-body {
-	margin: 30px;
-}
-
 p,
 li {
 	font-size: 18px;
@@ -32,26 +28,27 @@ label {
 }
 
 .changeAll {
-	background: none;
 	display: inline-block;
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
-	border: none;
-	color: mediumseagreen;
+	margin: 0 10px 0 5px;
+	position: relative;
+	width: 3px;
+	height: 14px;
+	background: mediumseagreen;
 	cursor: pointer;
 	transition: 0.3s all;
 }
 
-.changeAll:before {
-	display: inline-block;
-	content: "+";
-	font-size: 30px;
-	position: relative;
-	transform: translateY(4px);
+.changeAll:after {
+	content: "";
+	position: absolute;
+	top: 5.5px;
+	left: -5.5px;
+	width: 14px;
+	height: 3px;
+	background: inherit;
 }
 
 .changeAll[mode="false"] {
-	color: orangered;
-	transform: rotate(45deg) translate(6.2px, -6.2px);
+	background: orangered;
+	transform: rotate(45deg);
 }
