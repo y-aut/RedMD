@@ -1,0 +1,8 @@
+.red {
+	background: whitesmoke;
+	color: whitesmoke;
+}
+
+.red[shown="true"] {
+	color: coral;
+}
