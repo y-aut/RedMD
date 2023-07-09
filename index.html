@@ -66,7 +66,7 @@
                 setRed($(this), $(this).attr("shown") == "true" ? "false" : "true");
             });
 
-            $("h1,h2,li").each(function (i, elem) {
+            $("h1,h2,h3,li").each(function (i, elem) {
                 const target = territory($(this)).find(".red");
                 if (target.length) {
                     $(this).prepend('<div class="changeAll" mode="true"></div>');
