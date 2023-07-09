@@ -29,26 +29,38 @@ label {
 
 .changeAll {
 	display: inline-block;
-	margin: 0 10px 0 5px;
+	margin: 0 5px 0 0;
 	position: relative;
-	width: 3px;
+	width: 14px;
 	height: 14px;
-	background: mediumseagreen;
+	background: none;
 	cursor: pointer;
 	transition: 0.3s all;
+	--changeAll-color: mediumseagreen;
+}
+
+.changeAll:before {
+	content: "";
+	position: absolute;
+	left: 5.5px;
+	width: 3px;
+	height: 14px;
+	transition: 0.3s all;
+	background: var(--changeAll-color);
 }
 
 .changeAll:after {
 	content: "";
 	position: absolute;
 	top: 5.5px;
-	left: -5.5px;
+	left: 0px;
 	width: 14px;
 	height: 3px;
-	background: inherit;
+	transition: 0.3s all;
+	background: var(--changeAll-color);
 }
 
 .changeAll[mode="false"] {
-	background: orangered;
+	--changeAll-color: orangered;
 	transform: rotate(45deg);
 }
