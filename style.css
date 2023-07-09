@@ -88,7 +88,7 @@ footer {
 }
 
 .progress {
-	width: 40px;
+	width: 38px;
 	text-align: right;
 	color: dimgray;
 }
@@ -98,7 +98,6 @@ footer {
 	background-color: #fff6eb;
 	border: solid 1px #f6b9a6;
 	height: 10px;
-	width: 200px;
 	flex-grow: 1;
 	margin-right: 12px;
 	border-radius: 10px;
