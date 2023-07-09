@@ -88,7 +88,7 @@ footer {
 }
 
 .progress {
-	width: 38px;
+	width: 42px;
 	text-align: right;
 	color: dimgray;
 }
@@ -112,7 +112,7 @@ footer {
 }
 
 .file-select label {
-	margin-left: 50px;
+	margin-left: 30px;
 	margin-right: 50px;
 	padding: 0px 15px;
 	background: gainsboro;
