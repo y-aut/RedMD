@@ -77,7 +77,7 @@ $(function () {
     function setProgress() {
         const red = $(".red").length;
         const done = $(".red[shown='true']").length;
-        const progress = done / red * 100;
+        const progress = red == 0 ? 0 : (done / red * 100);
         $(".progress").text(Math.floor(progress) + " %");
         $(".progress-bar").css("--progress", progress + "%");
     }
