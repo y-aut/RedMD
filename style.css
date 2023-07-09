@@ -2,6 +2,11 @@
 	line-height: 32px;
 }
 
+body {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
 p,
 li {
 	font-size: 18px;
@@ -29,7 +34,7 @@ label {
 
 .changeAll {
 	display: inline-block;
-	margin: 0 5px 0 0;
+	margin-right: 5px;
 	position: relative;
 	width: 14px;
 	height: 14px;
@@ -39,28 +44,83 @@ label {
 	--changeAll-color: mediumseagreen;
 }
 
-.changeAll:before {
-	content: "";
-	position: absolute;
-	left: 5.5px;
-	width: 3px;
-	height: 14px;
-	transition: 0.3s all;
-	background: var(--changeAll-color);
-}
-
+.changeAll:before,
 .changeAll:after {
 	content: "";
 	position: absolute;
+	transition: inherit;
+	background: var(--changeAll-color);
+}
+
+.changeAll:before {
+	left: 5.5px;
+	width: 3px;
+	height: 14px;
+}
+
+.changeAll:after {
 	top: 5.5px;
-	left: 0px;
 	width: 14px;
 	height: 3px;
-	transition: 0.3s all;
-	background: var(--changeAll-color);
 }
 
 .changeAll[mode="false"] {
 	--changeAll-color: orangered;
 	transform: rotate(45deg);
+}
+
+#content {
+	box-sizing: border-box;
+	padding: 3px 12px 60px 12px;
+}
+
+footer {
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+	border-top: solid 1px lightgray;
+	width: 100%;
+	height: 50px;
+	padding: 0 30px;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.progress {
+	width: 40px;
+	text-align: right;
+	color: dimgray;
+}
+
+.progress-bar-frame {
+	display: inline-block;
+	background-color: #fff6eb;
+	border: solid 1px #f6b9a6;
+	height: 10px;
+	width: 200px;
+	flex-grow: 1;
+	margin-right: 12px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.progress-bar {
+	height: 100%;
+	width: var(--progress, 0%);
+	background: coral;
+	transition: 0.3s all;
+}
+
+.file-select label {
+	margin-left: 50px;
+	margin-right: 50px;
+	padding: 0px 15px;
+	background: gainsboro;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+label > input[type="file"] {
+	display: none;
 }
