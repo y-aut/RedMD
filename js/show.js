@@ -91,6 +91,7 @@ $(function () {
             }
         });
         setProgress();
+        updateHeader();
         if (save) saveData();
     }
 
@@ -105,7 +106,47 @@ $(function () {
         redChanged();
     }
 
+    function updateHeader() {
+        $("h1,h2").each(function (i, elem) {
+            const id = $(elem).attr("id");
+            $(`#${id}_link`).html($(elem).html());
+            $(`#${id}_link .changeAll`).remove();
+            $(`#${id}_link .red`).attr("class", "headerRed");
+        });
+    }
+
+    function createHeader() {
+        // 目次を作成
+        setDropMenu("false");
+        $(".header-dropmenu").empty();
+
+        let h1Id = "";
+        let h1Count = 0;
+        let h2Count = 0;
+        $("h1,h2").attr("class", "linked");
+        $("h1,h2").each(function (i, elem) {
+            if (elem.tagName == "H1") {
+                h1Id = "h1_" + (++h1Count);
+                $(elem).attr("id", h1Id);
+                $(".header-dropmenu").append(`<li><a id="${h1Id}_link" href="#${h1Id}"></a></li>`);
+            } else {
+                const h2Id = "h2_" + (++h2Count);
+                $(elem).attr("id", h2Id);
+                if (h1Id == "") {
+                    $(".header-dropmenu").append(`<li><a id="${h2Id}_link" href="#${h2Id}"></a></li>`);
+                } else {
+                    if ($(`#${h1Id}_ul`).length == 0) {
+                        $(`#${h1Id}_link`).after(`<ul id="${h1Id}_ul"></ul>`);
+                    }
+                    $(`#${h1Id}_ul`).append(`<li><a id="${h2Id}_link" href="#${h2Id}"></a></li>`)
+                }
+            }
+        });
+        updateHeader();
+    }
+
     function loadContent() {
+        $(".header-title").text(sessionStorage.getItem("title"));
         $("#content").html(sessionStorage.getItem("content"));
         $("code").replaceWith(function () {
             const text = $(this).text();
@@ -124,23 +165,41 @@ $(function () {
             const target = territory($(this).parent());
             setRedAll(target, $(this).attr("mode"));
         });
+        createHeader();
         loadData();
     }
 
+    function setDropMenu(value) {
+        $(".open-dropmenu").attr("mode", value);
+        $(".header-dropmenu").attr("shown", value);
+    }
+
+    $(".header-block").click(function () {
+        if ($(".open-dropmenu").attr("mode") == "true") {
+            setDropMenu("false");
+        } else {
+            setDropMenu("true");
+        }
+    });
+    $(document).on("click", ".header-dropmenu a", function () {
+        setDropMenu("false");
+    });
+
     $("#file-input").click(function (e) {
         e.target.value = "";
-    })
+    });
     $("#file-input").change(function () {
         if (!this.files) return;
         const [file] = this.files;
         const reader = new FileReader();
         reader.addEventListener("load", () => {
+            sessionStorage.setItem("title", file.name);
             sessionStorage.setItem("content", reader.result);
             sessionStorage.removeItem("shown");
             loadContent();
         }, false);
         reader.readAsText(file);
-    })
+    });
 
     loadContent();
 });

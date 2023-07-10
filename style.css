@@ -1,5 +1,6 @@
 * {
-	line-height: 32px;
+	--ans-color: coral;
+	--header-height: 40px;
 }
 
 body {
@@ -29,7 +30,7 @@ label {
 }
 
 .red[shown="true"] {
-	color: coral;
+	color: var(--ans-color);
 }
 
 .changeAll {
@@ -70,8 +71,9 @@ label {
 }
 
 #content {
+	line-height: 32px;
 	box-sizing: border-box;
-	padding: 3px 12px 60px 12px;
+	padding: calc(var(--header-height) + 16px) 12px 60px 12px;
 }
 
 footer {
@@ -112,6 +114,7 @@ footer {
 }
 
 .file-select label {
+	line-height: 32px;
 	margin-left: 30px;
 	margin-right: 50px;
 	padding: 0px 15px;
@@ -122,4 +125,112 @@ footer {
 
 label > input[type="file"] {
 	display: none;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	background-color: white;
+	width: 100%;
+	height: 40px;
+	z-index: 2;
+}
+
+.header-block {
+	display: flex;
+	width: 100%;
+	height: var(--header-height);
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.header-title {
+	font-size: 14px;
+	margin: auto 0;
+}
+
+.open-dropmenu {
+	display: flex;
+	justify-content: center;
+	width: 24px;
+	height: 100%;
+}
+
+.open-dropmenu:before {
+	content: "";
+	position: absolute;
+	top: 17px;
+	width: 6px;
+	height: 6px;
+	border-top: 2px solid #999;
+	border-right: 2px solid #999;
+	transform: rotate(135deg);
+	transform-origin: 5px 3px;
+	transition: 0.5s all;
+}
+
+.open-dropmenu[mode="true"]:before {
+	transform: rotate(-45deg);
+}
+
+nav {
+	height: 0;
+	padding: 0 10px;
+	transition: 0.5s all;
+	--nav-bg-color: #eaeaea;
+	background: var(--nav-bg-color);
+	border-bottom: solid 1px lightgray;
+}
+
+nav:has(> ul[shown="true"]) {
+	height: 40vh;
+	padding: 10px;
+}
+
+.header-dropmenu {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	overscroll-behavior: contain;
+}
+
+.header-dropmenu a {
+	color: #393939;
+	text-decoration: underline;
+}
+
+.headerRed[shown="true"] {
+	color: var(--ans-color);
+	text-decoration-color: black;
+}
+
+.headerRed[shown="false"] {
+	color: var(--nav-bg-color);
+	text-decoration-color: black;
+}
+
+.header-dropmenu > li {
+	list-style-type: none;
+}
+
+.header-dropmenu li {
+	position: relative;
+	font-size: 14px;
+	line-height: 26px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-webkit-text-overflow: ellipsis;
+}
+
+.header-dropmenu ul {
+	padding-left: 14px;
+}
+
+.linked {
+	padding-top: calc(var(--header-height) + 10px);
+	margin-top: calc((var(--header-height) + 10px) * -1);
 }

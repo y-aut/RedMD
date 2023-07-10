@@ -4,6 +4,7 @@ $(function () {
         const [file] = this.files;
         const reader = new FileReader();
         reader.addEventListener("load", () => {
+            sessionStorage.setItem("title", file.name);
             sessionStorage.setItem("content", reader.result);
             sessionStorage.removeItem("shown");
             location.href = "show.html";
