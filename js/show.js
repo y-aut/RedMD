@@ -128,17 +128,17 @@ $(function () {
             if (elem.tagName == "H1") {
                 h1Id = "h1_" + (++h1Count);
                 $(elem).attr("id", h1Id);
-                $(".header-dropmenu").append(`<li><a id="${h1Id}_link" href="#${h1Id}"></a></li>`);
+                $(".header-dropmenu").append(`<li><a id="${h1Id}_link" target="${h1Id}"></a></li>`);
             } else {
                 const h2Id = "h2_" + (++h2Count);
                 $(elem).attr("id", h2Id);
                 if (h1Id == "") {
-                    $(".header-dropmenu").append(`<li><a id="${h2Id}_link" href="#${h2Id}"></a></li>`);
+                    $(".header-dropmenu").append(`<li><a id="${h2Id}_link" target="${h2Id}"></a></li>`);
                 } else {
                     if ($(`#${h1Id}_ul`).length == 0) {
                         $(`#${h1Id}_link`).after(`<ul id="${h1Id}_ul"></ul>`);
                     }
-                    $(`#${h1Id}_ul`).append(`<li><a id="${h2Id}_link" href="#${h2Id}"></a></li>`)
+                    $(`#${h1Id}_ul`).append(`<li><a id="${h2Id}_link" target="${h2Id}"></a></li>`)
                 }
             }
         });
@@ -183,6 +183,11 @@ $(function () {
     });
     $(document).on("click", ".header-dropmenu a", function () {
         setDropMenu("false");
+        const headerHeight = 40;
+        const target = $(`#${$(this).attr("target")}`);
+        const position = $(target).offset().top - headerHeight - 10;
+        $("html,body").animate({ scrollTop: position }, 300);
+        return false;
     });
 
     $("#file-input").click(function (e) {
@@ -196,6 +201,7 @@ $(function () {
             sessionStorage.setItem("title", file.name);
             sessionStorage.setItem("content", reader.result);
             sessionStorage.removeItem("shown");
+            $("html,body").animate({ scrollTop: 0 }, 1);
             location.reload();
         }, false);
         reader.readAsText(file);
