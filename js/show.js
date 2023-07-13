@@ -196,7 +196,7 @@ $(function () {
             sessionStorage.setItem("title", file.name);
             sessionStorage.setItem("content", reader.result);
             sessionStorage.removeItem("shown");
-            loadContent();
+            location.reload();
         }, false);
         reader.readAsText(file);
     });
