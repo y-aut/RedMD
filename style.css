@@ -81,7 +81,7 @@ label {
 #content {
 	line-height: 32px;
 	box-sizing: border-box;
-	padding: calc(var(--header-height) + 16px) 12px 60px 12px;
+	padding: var(--header-height) 12px 60px 12px;
 }
 
 footer {
