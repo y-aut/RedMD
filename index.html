@@ -10,9 +10,14 @@
 </head>
 
 <body>
-    <h1>RedMD</h1>
-    <label for="file">HTML ファイルを選択</label>
-    <input type="file" id="file" accept=".html">
+    <div class="drop-area">
+        <h1>RedMD</h1>
+        <div class="file-select">
+            <button>HTML ファイルを選択</button>
+            <input type="file" id="file" accept=".html">
+            <div><small>または、ここに HTML ファイルをドロップ</small></div>
+        </div>
+    </div>
 
     <script src="js/index.js"></script>
 </body>
