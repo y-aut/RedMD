@@ -146,7 +146,12 @@ $(function () {
     }
 
     function loadContent() {
-        $(".header-title").text(sessionStorage.getItem("title"));
+        const title = sessionStorage.getItem("title");
+        if (!title) {
+            location.href = "index.html";
+            return;
+        }
+        $(".header-title").text(title);
         $("#content").html(sessionStorage.getItem("content"));
         $("code").replaceWith(function () {
             const text = $(this).text();
