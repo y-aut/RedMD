@@ -190,6 +190,9 @@ $(function () {
         return false;
     });
 
+    $(".file-select > button").click(function () {
+        $(this).siblings('input[type="file"]').click();
+    });
     $("#file-input").click(function (e) {
         e.target.value = "";
     });

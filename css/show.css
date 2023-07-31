@@ -126,17 +126,18 @@ footer {
 	transition: 0.3s all;
 }
 
-.file-select label {
+.file-select button {
 	line-height: 32px;
 	margin-left: 30px;
 	margin-right: 50px;
 	padding: 0px 15px;
 	background: gainsboro;
 	border-radius: 5px;
+	border: none;
 	cursor: pointer;
 }
 
-label > input[type="file"] {
+.file-select input[type="file"] {
 	display: none;
 }
 
