@@ -23,17 +23,28 @@ $(function () {
     });
 
     const da = $(".drop-area").get(0);
+    let dragFlag = false;
+
+    da.addEventListener("dragenter", function () {
+        dragFlag = true;
+    }, false);
 
     da.addEventListener("dragover", function (e) {
+        dragFlag = false;
         e.stopPropagation();
         e.preventDefault();
-        this.style.background = "#e1e7f0";
+        $(da).addClass("dragover");
     }, false);
 
     da.addEventListener("dragleave", function (e) {
+        if (dragFlag) {
+            dragFlag = false;
+        }
+        else {
+            $(da).removeClass("dragover");
+        }
         e.stopPropagation();
         e.preventDefault();
-        this.style.background = "#ffffff";
     }, false);
 
     da.addEventListener("drop", function (e) {
