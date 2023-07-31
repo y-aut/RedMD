@@ -50,6 +50,7 @@ $(function () {
     da.addEventListener("drop", function (e) {
         e.stopPropagation();
         e.preventDefault();
+        $(da).removeClass("dragover");
         const files = e.dataTransfer.files;
         $("#file").get(0).files = files;
         fileChanged();
